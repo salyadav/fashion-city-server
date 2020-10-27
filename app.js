@@ -108,6 +108,11 @@ app.post('/create-checkout-session', async (req, res) => {
   });
   res.json({ id: session.id });
 });
+const port = process.env.PORT || 80 ;
+app.listen(port, () => console.log(`Listening on port ${5000}...`));
 
-app.listen(5000, () => console.log(`Listening on port ${5000}...`));
+
+
+
+
 
