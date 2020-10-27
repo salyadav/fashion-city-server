@@ -11,14 +11,19 @@ const querystring = require('querystring');
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json());
 
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', ['https://fashion-city.netlify.app','https://fashion-city.netlify.app/']);
+  next();
+});
+
 app.get('/test',(req, res) => {
     res.setHeader('Content-Type', 'application/json');
     res.end(JSON.stringify({ testData: 12345 }));
 });
 
 app.get('/',(req, res) => {
-    responseJson.ReceivedData = req.body;
-    res.send('-------------Fashion City Server-----------------');
+    res.setHeader('Content-Type', 'application/json');
+    res.end({Message: 'Fashion City Server is running....'});
 });
 
 
