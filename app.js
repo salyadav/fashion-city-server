@@ -26,11 +26,12 @@ app.post('/test',(req, res) => {
     let responseJson = {};
     responseJson.ReceivedData = req.body;
     res.setHeader('Content-Type', 'application/json');
+    res.setHeader('Access-Control-Allow-Origin', '*');
     res.end(JSON.stringify({responseJson}));
 });
 
 app.get('/payment_success',(req,res)=>{
-
+	res.setHeader('Access-Control-Allow-Origin', '*');
 	let rawUrl = req.url;
 
 	let parsedUrl = url.parse(rawUrl);
@@ -84,6 +85,7 @@ line_items:[
 */
 app.post('/create-checkout-session', async (req, res) => {
   let lineItems = [];
+  res.setHeader('Access-Control-Allow-Origin', '*');
   req.body.items.forEach((item,index)=>{
     let newLineItem = {};
 
@@ -109,16 +111,10 @@ app.post('/create-checkout-session', async (req, res) => {
     },
     line_items: lineItems,
     mode: 'payment',
-    success_url: 'http://localhost:3000/payment_success?session_id={CHECKOUT_SESSION_ID}',
-    cancel_url: 'http://localhost:3000/checkout',
+    success_url: 'https://fashion-city.netlify.app/payment_success?session_id={CHECKOUT_SESSION_ID}',
+    cancel_url: 'https://fashion-city.netlify.app/checkout',
   });
   res.json({ id: session.id });
 });
 const port = process.env.PORT || 80 ;
 app.listen(port, () => console.log(`Listening on port ${5000}...`));
-
-
-
-
-
-
