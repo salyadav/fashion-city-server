@@ -16,6 +16,12 @@ app.get('/test',(req, res) => {
     res.end(JSON.stringify({ testData: 12345 }));
 });
 
+app.get('/',(req, res) => {
+    responseJson.ReceivedData = req.body;
+    res.send('-------------Fashion City Server-----------------');
+});
+
+
 app.post('/test',(req, res) => {
     let responseJson = {};
     responseJson.ReceivedData = req.body;
