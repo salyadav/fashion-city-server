@@ -31,16 +31,6 @@ app.post('/test',(req, res) => {
 });
 
 app.get('/payment_success',(req,res)=>{
-	const allowedOrigins = ['https://fashion-city.netlify.app/'];
-  	const origin = req.headers.origin;
-  	if (allowedOrigins.includes(origin)) {
-       		res.setHeader('Access-Control-Allow-Origin', origin);
-  	}
-  	res.header('Access-Control-Allow-Methods', 'GET, OPTIONS');
-  	res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  	res.header('Access-Control-Allow-Credentials', true);
-	
-	
 	let rawUrl = req.url;
 
 	let parsedUrl = url.parse(rawUrl);
@@ -93,15 +83,6 @@ line_items:[
     ]
 */
 app.post('/create-checkout-session', async (req, res) => {
-  const allowedOrigins = ['https://fashion-city.netlify.app/'];
-  const origin = req.headers.origin;
-  if (allowedOrigins.includes(origin)) {
-       res.setHeader('Access-Control-Allow-Origin', origin);
-  }
-  //res.header('Access-Control-Allow-Origin', 'http://127.0.0.1:8020');
-  res.header('Access-Control-Allow-Methods', 'GET, OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  res.header('Access-Control-Allow-Credentials', true);
   let lineItems = [];
 
   req.body.items.forEach((item,index)=>{
@@ -136,3 +117,15 @@ app.post('/create-checkout-session', async (req, res) => {
 });
 const port = process.env.PORT || 80 ;
 app.listen(port, () => console.log(`Listening on port ${5000}...`));
+
+
+/*
+const allowedOrigins = ['https://fashion-city.netlify.app/'];
+  	const origin = req.headers.origin;
+  	if (allowedOrigins.includes(origin)) {
+       		res.setHeader('Access-Control-Allow-Origin', origin);
+  	}
+  	res.header('Access-Control-Allow-Methods', 'GET, OPTIONS');
+  	res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  	res.header('Access-Control-Allow-Credentials', true);
+*/
