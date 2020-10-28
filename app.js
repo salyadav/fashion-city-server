@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const stripe = require('stripe')('sk_test_51HffMDHoj35pmsJhXJ5USfQTjIGow7ZSTXokHvYC7X0z1BdH4hnFfYbVUThMDVG7VZh9KzWct2T2BcZzHEX9ruaO00p3W2Mq1t');
+const cors = require('cors');
 
 stripe.setMaxNetworkRetries(2);
 
@@ -8,6 +9,7 @@ stripe.setMaxNetworkRetries(2);
 const url = require('url');
 const querystring = require('querystring');
 
+app.use(cors());
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json());
 
